@@ -1,0 +1,13 @@
+{
+  "name": "Quản lý tiền lương",
+  "short_name": "Quản lý tiền lương",
+  "description": "Quản lý và tính lương nhân viên",
+  "lang": "vi",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f4f6fb",
+  "theme_color": "#3157d5",
+  "icons": [
+    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

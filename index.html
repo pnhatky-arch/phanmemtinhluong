@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#3157d5" />
+    <meta name="description" content="Quản lý và tính lương nhân viên đơn giản, riêng tư." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icon.svg" />
+    <meta name="apple-mobile-web-app-title" content="Quản lý tiền lương" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <link rel="stylesheet" href="./styles.css?v=181" />
+    <title>Quản lý tiền lương</title>
+  </head>
+  <body>
+    <div class="finance-app">
+      <div class="aurora aurora-one"></div><div class="aurora aurora-two"></div>
+      <header class="topbar">
+        <div class="topbar-inner">
+          <a class="brand" href="#" aria-label="Trang chủ Tính Lương">
+            <img src="./icon.svg" alt="" class="brand-mark" />
+            <span><strong>Quản lý tiền lương</strong><small>Tính lương và theo dõi nhân viên</small></span>
+          </a>
+          <div class="header-actions">
+            <span class="save-status"><i></i> Đã lưu trên thiết bị</span>
+          </div>
+        </div>
+      </header>
+      <div class="topbar-menu">
+        <nav aria-label="Điều hướng chính">
+          <button class="active" data-view="overview" type="button"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="8" x2="16" y1="10" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg></span>Tổng quan</button>
+          <button data-view="employees" type="button"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Quản lý</button>
+          <button data-view="payslips" type="button"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l4 4v16H6z"/><path d="M14 2v5h5"/><path d="M9 12h6"/><path d="M9 16h6"/></svg></span>Phiếu lương</button>
+          <button data-view="settings" type="button"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.83 2.83-.06-.06A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 .6 1.7 1.7 0 0 0-.4 1.1V21h-4v-.09A1.7 1.7 0 0 0 8.6 19.4a1.7 1.7 0 0 0-1.88.34l-.06.06-2.83-2.83.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-.6-1 1.7 1.7 0 0 0-1.1-.4H3v-4h.09A1.7 1.7 0 0 0 4.6 8.6a1.7 1.7 0 0 0-.34-1.88l-.06-.06 2.83-2.83.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-.6 1.7 1.7 0 0 0 .4-1.1V3h4v.09A1.7 1.7 0 0 0 15.4 4.6a1.7 1.7 0 0 0 1.88-.34l.06-.06 2.83 2.83-.06.06A1.7 1.7 0 0 0 19.4 9c.1.38.31.73.6 1 .29.27.67.42 1.1.4H21v4h-.09A1.7 1.7 0 0 0 19.4 15Z"/></svg></span>Cài đặt</button>
+          <button class="theme-control" id="themeToggle" type="button" aria-label="Chuyển sang giao diện tối" title="Chuyển giao diện"><span id="themeIcon" aria-hidden="true">☾</span></button>
+        </nav>
+      </div>
+
+      <div class="workspace">
+<main class="main-content">
+        <div class="page-title">
+          <div><h1 id="pageHeading">Tổng quan lương</h1><p id="pageDescription" hidden></p></div>
+          <button class="button primary" id="addEmployeeHeader" type="button" hidden>＋ Thêm nhân viên</button>
+        </div>
+        <section class="period-bar" aria-label="Kỳ lương">
+          <div>
+            <label for="payrollMonth">Kỳ lương <span id="payrollDays">30 ngày</span></label>
+            <input id="payrollMonth" type="date" aria-label="Ngày trong kỳ lương" />
+          </div>
+          <div class="period-actions">
+            <button class="button ghost" id="goToday" type="button">Hôm nay</button><button class="button ghost" id="copyPrevious" type="button">Sao chép tháng trước</button>
+
+          </div>
+        </section>
+
+
+        <section class="summary overview-summary" data-view-section="overview" aria-label="Tổng quan kỳ lương">
+          <article class="summary-main" id="metricRemaining">
+            <p><b>TỔNG LƯƠNG CÒN LẠI</b><span id="employeeCount">Nhân viên: chưa chọn</span></p>
+            <strong id="totalRemaining">0 ₫</strong>
+          </article>
+          <article class="metric" id="metricBase"><span class="metric-icon blue">▤</span><div><small>Tổng lương</small><strong id="totalBase">0 ₫</strong></div></article>
+          <article class="metric" id="metricBonus"><span class="metric-icon green">✦</span><div><small>Tiền thưởng</small><strong id="totalBonus">0 ₫</strong></div></article>
+          <article class="metric" id="metricAdvance"><span class="metric-icon orange">↙</span><div><small>Ứng lương</small><strong id="totalAdvance" class="deduction-value">0 ₫</strong></div></article>
+          <article class="metric" id="metricDeduction"><span class="metric-icon orange">−</span><div><small>Tổng khấu trừ</small><strong id="totalDeduction" class="deduction-value">0 ₫</strong></div></article>
+          <article class="metric" id="metricLeaveDays"><span class="metric-icon violet">◷</span><div><small>Tổng ngày nghỉ</small><strong id="totalLeaveDays">0 ngày</strong></div></article>
+          <article class="metric" id="metricLeaveDeduction"><span class="metric-icon red">↓</span><div><small>Tiền nghỉ bị trừ</small><strong id="totalLeaveDeduction" class="deduction-value">0 ₫</strong></div></article>
+          <article class="metric" id="metricOtherDeduction"><span class="metric-icon gray">≡</span><div><small>Khoản trừ khác</small><strong id="totalOtherDeduction" class="deduction-value">0 ₫</strong></div></article>
+          <article class="metric payment-summary" id="metricPaymentStatus"><span class="metric-icon green">✓</span><div><small>Trạng thái thanh toán</small><strong id="paymentStatusTitle">Chưa chọn nhân viên</strong><p id="paymentStatusDetails">Chọn nhân viên để xem trạng thái lương.</p></div></article>
+        </section>
+        <section class="overview-detail" data-view-section="overview">
+          <div class="overview-detail-heading">
+            <div class="overview-heading-copy">
+              <div class="saved-month-toolbar"><label for="overviewSavedMonth">Xem lương theo tháng đã lưu · đồng bộ từ Quản lý</label><select id="overviewSavedMonth" aria-label="Xem lương theo tháng đã lưu"></select></div>
+              <div class="employee-filter" aria-label="Chọn nhân viên để tổng hợp">
+                <div class="overview-filter-copy"><strong>Chi tiết lương nhân viên<em>Toàn bộ thu nhập và khấu trừ trong kỳ đang chọn.</em></strong></div>
+                <div class="selection-options overview-selection-options"><label class="select-all"><input id="selectAllEmployees" type="checkbox" checked /><small id="selectedEmployeeCount">Tất cả nhân viên</small></label>
+                <div id="employeeSelection" class="employee-selection"></div></div>
+                <div class="selection-actions"><button class="button ghost" id="overviewExport" type="button">Xuất bảng lương</button><button class="button ghost" id="openEmployeeManagement" type="button">Quản lý nhân viên</button><button class="button primary" id="overviewAdd" type="button">＋ Thêm nhân viên</button></div>
+              </div>
+            </div>
+          </div>
+          <div class="overview-table-scroll">
+            <div class="overview-table-head" aria-hidden="true">
+              <span>Nhân viên</span><span>Lương</span><span>Thưởng</span><span>Ứng</span><span>Nghỉ</span><span>Khấu trừ</span><span>Thực nhận</span><span></span>
+            </div>
+            <div id="overviewEmployeeList" class="overview-employee-list"></div>
+          </div>
+          <div id="overviewEmpty" class="overview-empty">
+            <span>♙</span><div><strong>Chưa có nhân viên trong kỳ này</strong><p>Thêm nhân viên để xem báo cáo lương tổng hợp.</p></div>
+
+          </div>
+        </section>
+
+        <section class="settings-panel ios-settings" data-view-section="settings" hidden>
+          <div class="ios-settings-list" aria-label="Cài đặt ứng dụng">
+            <details class="ios-setting-group">
+              <summary><span class="ios-setting-icon blue">▦</span><span><strong>Thông tin tổ chức</strong><small>Logo và nhận diện trên Phiếu lương</small></span><b>›</b></summary>
+              <div class="ios-setting-content">
+                <div class="organization-logo-setting"><img id="organizationLogoPreview" src="./icon.svg" alt="Xem trước logo tổ chức" /><span><b>Logo tổ chức</b><small id="organizationLogoStatus">Đang dùng logo mặc định của ứng dụng.</small></span><div><label class="button ghost" for="organizationLogoInput">Chọn logo</label><button class="button ghost" id="removeOrganizationLogo" type="button" hidden>Xóa logo</button><input id="organizationLogoInput" type="file" accept="image/*" hidden /></div></div>
+              </div>
+            </details>
+
+            <details class="ios-setting-group">
+              <summary><span class="ios-setting-icon purple">◐</span><span><strong>Giao diện & hiển thị</strong><small>Thanh ứng dụng, kỳ lương và chế độ sáng/tối</small></span><b>›</b></summary>
+              <div class="ios-setting-content">
+                <label class="system-setting-row" for="showAppBrand"><span><b>Hiện thanh logo và tên ứng dụng</b><small>Hiển thị phần nhận diện ở đầu ứng dụng.</small></span><input id="showAppBrand" type="checkbox" role="switch" checked /><i aria-hidden="true"></i></label>
+                <label class="system-setting-row" for="showAppCredit"><span><b>Hiện thông tin thiết kế</b><small>Hiện dòng thông tin ở cuối ứng dụng.</small></span><input id="showAppCredit" type="checkbox" role="switch" checked /><i aria-hidden="true"></i></label>
+                <label class="system-setting-row" for="showPayrollPeriod"><span><b>Hiện thanh Kỳ lương</b><small>Hiện bộ chọn kỳ lương trên các màn hình chính.</small></span><input id="showPayrollPeriod" type="checkbox" role="switch" checked /><i aria-hidden="true"></i></label>
+                <button class="ios-inline-setting" id="themeSettingButton" type="button"><span><b>Chế độ sáng / tối</b><small>Dùng giao diện phù hợp môi trường.</small></span><strong>Đổi ›</strong></button>
+              </div>
+            </details>
+
+            <details class="ios-setting-group">
+              <summary><span class="ios-setting-icon green">⇅</span><span><strong>Cột quản lý</strong><small>Phục hồi các cột đã ẩn trong Quản lý</small></span><b>›</b></summary>
+              <div class="ios-setting-content">
+                <section class="hidden-management-columns" aria-labelledby="hiddenManagementColumnsTitle">
+                  <div><strong id="hiddenManagementColumnsTitle">Ô đã ẩn</strong><small>Ẩn cột chỉ thay đổi giao diện, không xóa dữ liệu.</small></div>
+                  <div id="hiddenManagementColumnsList" class="hidden-management-columns-list"></div>
+                </section>
+              </div>
+            </details>
+
+            <details class="ios-setting-group">
+              <summary><span class="ios-setting-icon cyan">☁</span><span><strong>Sao lưu & phục hồi</strong><small>Xuất, chia sẻ hoặc nhập lại dữ liệu</small></span><b>›</b></summary>
+              <div class="ios-setting-content">
+                <div class="storage-status"><span class="storage-status-icon">✓</span><div><strong>Dữ liệu đang lưu trên thiết bị</strong><p>Ứng dụng tự lưu sau mỗi thay đổi. Nên tạo bản sao lưu định kỳ.</p></div></div>
+                <div class="backup-grid">
+                  <button class="backup-action" id="exportBackup" type="button"><span>↓</span><strong>Tải file sao lưu</strong><small>Lưu dữ liệu thành JSON.</small></button>
+                  <button class="backup-action" id="shareBackup" type="button"><span>↗</span><strong>Chia sẻ file</strong><small>Gửi qua AirDrop, Mail, Zalo...</small></button>
+                  <button class="backup-action" id="importBackup" type="button"><span>↑</span><strong>Phục hồi dữ liệu</strong><small>Nhập file sao lưu đã tạo.</small></button>
+                  <button class="backup-action danger" id="resetAllData" type="button"><span>⌫</span><strong>Xóa toàn bộ dữ liệu</strong><small>Xóa dữ liệu trên thiết bị.</small></button>
+                </div>
+                <input id="importBackupFile" type="file" accept="application/json,.json" hidden />
+              </div>
+            </details>
+
+            <details class="ios-setting-group">
+              <summary><span class="ios-setting-icon orange">↻</span><span><strong>Cập nhật phần mềm</strong><small>Làm mới cache và tải phiên bản mới</small></span><b>›</b></summary>
+              <div class="ios-setting-content">
+                <button class="system-update-action" id="updateSoftware" type="button"><span class="system-update-icon" aria-hidden="true">↻</span><span><b>Cập nhật phần mềm</b><small>Dọn cache và Service Worker. Dữ liệu nhân viên và lương vẫn được giữ nguyên.</small></span><strong aria-hidden="true">›</strong></button>
+              </div>
+            </details>
+
+            <details class="ios-setting-group">
+              <summary><span class="ios-setting-icon yellow">ƒ</span><span><strong>Công thức & ký hiệu</strong><small>Cách tính lương và ý nghĩa màu sắc</small></span><b>›</b></summary>
+              <div class="ios-setting-content">
+                <div class="settings-note formula-settings-note"><strong>Công thức tính lương</strong><p><b>Lương thực nhận = Lương tháng + Thưởng − Ứng lương − Tiền nghỉ − Khoản trừ khác</b><span>Tiền nghỉ = Lương tháng ÷ số ngày của kỳ × số ngày nghỉ.</span></p></div>
+                <div class="ios-legend-compact">
+                  <span><i class="legend-swatch green"></i>Thu nhập / đã thanh toán</span>
+                  <span><i class="legend-swatch blue"></i>Thao tác / thông tin</span>
+                  <span><i class="legend-swatch red"></i>Khấu trừ / giá trị âm</span>
+                  <span><i class="legend-swatch yellow"></i>Chưa thanh toán</span>
+                </div>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="payslip-hub" data-view-section="payslips" hidden>
+          <div class="payslip-hub-hero">
+            <span class="payslip-hub-icon">▤</span>
+            <div><strong>Phiếu lương nhân viên</strong><small>Chọn nhân viên để xem, lưu ảnh hoặc chia sẻ Phiếu lương.</small></div>
+          </div>
+          <div id="payslipHubList" class="payslip-hub-list"></div>
+        </section>
+
+        <section class="employees-panel" data-view-section="employees" hidden>
+          <div class="employee-filter management-selection" aria-label="Chọn nhân viên để quản lý">
+            <div class="saved-month-toolbar management-saved-month"><label for="managementSavedMonth">Tháng lương đã lưu</label><select id="managementSavedMonth" aria-label="Xem lương theo tháng đã lưu"></select></div>
+            <div><strong>Quản lý nhân viên<em>Chọn nhân viên để cập nhật các khoản lương.</em></strong></div>
+            <div class="selection-options"><label class="select-all"><input id="selectAllEmployeesManage" type="checkbox" checked /><small id="selectedEmployeeCountManage">Tất cả nhân viên</small></label>
+            <div id="employeeSelectionManage" class="employee-selection"></div></div><div class="selection-actions"><button class="button ghost" id="panelExport" type="button">Xuất bảng lương</button><button class="button ghost" id="openOverview" type="button">Tổng quan lương</button><button class="button primary" id="panelAdd" type="button">＋ Thêm nhân viên</button></div>
+          </div>
+          <div class="employee-table-scroll">
+            <div class="employee-table-head" id="employeeTableHead" aria-hidden="true"></div>
+            <div id="employeeList" class="employee-list"></div>
+          </div>
+          <div id="emptyState" class="empty-state" hidden>
+            <div class="empty-icon">♙</div>
+            <h2>Chưa có nhân viên</h2>
+            <p>Thêm nhân viên đầu tiên để bắt đầu tính lương cho kỳ này.</p>
+            <button class="button primary" id="emptyAdd" type="button">＋ Thêm nhân viên đầu tiên</button>
+          </div>
+        </section>
+          <footer class="app-credit">• Thiết kế bởi NhatkyPham</footer>
+        </main>
+      </div>
+    </div>
+
+    <div id="employeeDialog" class="information-modal employee-information-modal" hidden role="dialog" aria-modal="true" aria-label="Thông tin nhân viên">
+      <form id="employeeForm">
+        <input id="employeeId" type="hidden" />
+        <div class="form-grid">
+          <label class="wide"><span class="field-label">Họ và tên <i class="required-mark">*</i></span><input id="name" required maxlength="80" autocomplete="name" placeholder="Ví dụ: Nguyễn Văn An" /></label>
+          <label class="wide">Chức vụ<input id="position" maxlength="80" placeholder="Ví dụ: Nhân viên kinh doanh" /></label><label>Ngày vào làm<input id="employmentStart" type="date" /></label>
+          <label>Số căn cước<input id="citizenId" maxlength="20" inputmode="numeric" placeholder="Nhập số căn cước" /></label>
+          <label class="wide">Số bằng lái<input id="driverLicense" maxlength="30" placeholder="Nhập số bằng lái" /></label>
+          <section class="employee-images wide">
+            <strong>Hình ảnh hồ sơ</strong><small>Ảnh được lưu riêng trên trình duyệt này.</small>
+            <div class="image-inputs profile-image-inputs">
+              <div class="document-image-group avatar-image-group"><h4>Ảnh nhân viên và ảnh đại diện</h4><div class="document-image-sides">
+                <div class="avatar-upload-box"><strong>Ảnh nhân viên</strong><div class="avatar-choice-controls"><label for="employeePhoto" aria-label="Thêm ảnh nhân viên">＋</label><input id="employeePhoto" type="file" accept="image/*" /><input class="avatar-source-radio" name="avatarSource" type="radio" value="employee" checked aria-label="Dùng ảnh nhân viên làm ảnh đại diện" /></div><em class="avatar-source-caption">Làm ảnh đại diện</em><span id="employeePhotoStatus">Chưa có ảnh</span></div>
+                <div class="avatar-upload-box"><strong>Ảnh đại diện</strong><div class="avatar-choice-controls"><label for="avatarImage" aria-label="Thêm ảnh đại diện">＋</label><input id="avatarImage" type="file" accept="image/*" /><input class="avatar-source-radio" name="avatarSource" type="radio" value="custom" aria-label="Dùng ảnh đại diện riêng" /></div><span id="avatarImageStatus">Chưa có ảnh riêng</span></div>
+              </div></div>
+              <div class="document-image-group"><h4>Căn cước</h4><div class="document-image-sides">
+                <label>Mặt trước<input id="citizenIdFrontImage" type="file" accept="image/*" /><span id="citizenIdFrontImageStatus">Chưa có ảnh</span></label>
+                <label>Mặt sau<input id="citizenIdBackImage" type="file" accept="image/*" /><span id="citizenIdBackImageStatus">Chưa có ảnh</span></label>
+              </div></div>
+              <div class="document-image-group"><h4>Bằng lái</h4><div class="document-image-sides">
+                <label>Mặt trước<input id="driverLicenseFrontImage" type="file" accept="image/*" /><span id="driverLicenseFrontImageStatus">Chưa có ảnh</span></label>
+                <label>Mặt sau<input id="driverLicenseBackImage" type="file" accept="image/*" /><span id="driverLicenseBackImageStatus">Chưa có ảnh</span></label>
+              </div></div>
+            </div>
+          </section>
+          <label class="wide"><span class="field-label">Mức lương tháng <i class="required-mark">*</i></span><div class="money-input"><input id="baseSalary" class="currency-input" required type="text" inputmode="numeric" placeholder="Nhập mức lương" /><b>₫</b></div></label>
+          <section class="payroll-settings wide"><div class="payroll-settings-heading"><strong>Cách tính lương riêng</strong><small>Kỳ lương chạy đủ một chu kỳ sang tháng kế tiếp. Có thể chốt sớm khi cần kết thúc kỳ trước ngày dự kiến.</small></div><div class="payroll-method-grid"><label><span>Cách tính</span><select id="payrollMethod"><option value="month-start">Từ đầu tháng mới</option><option value="employment-start">Từ ngày vào làm</option><option value="custom-start">Từ ngày tùy chọn</option></select></label><label id="payrollCustomStartDateWrap" hidden><span>Ngày bắt đầu kỳ</span><input id="payrollCustomStartDate" type="date" /></label><label><span>Kết thúc kỳ</span><select id="payrollEndMode"><option value="full-period">Đủ kỳ lương</option><option value="termination-date">Chốt sớm</option></select></label><label id="employmentEndWrap" hidden><span>Ngày chốt sớm</span><input id="employmentEnd" type="date" /></label></div></section>
+          <label class="wide">Ghi chú<textarea id="note" maxlength="300" rows="3" placeholder="Ghi chú thêm (không bắt buộc)"></textarea></label>
+        </div>
+
+        <div class="dialog-actions employee-dialog-actions">
+          <button class="button danger" id="deleteEmployee" type="button" hidden>Xóa nhân viên</button>
+          <div class="employee-save-actions">
+            <button class="button ghost export-employee-button" id="exportEmployeeInfo" type="button" hidden>Xuất thông tin</button>
+            <button class="button ghost" id="cancelDialog" type="button">Hủy</button>
+            <button class="button primary" type="submit">Lưu thông tin</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div id="exportDialog" class="export-sheet" hidden role="dialog" aria-modal="true">
+      <div class="export-dialog-content">
+        <div class="dialog-heading"><div><p class="eyebrow">XUẤT HÌNH ẢNH</p><h2 id="exportDialogTitle">Chọn nhân viên xuất</h2></div><button class="icon-button" id="closeExportDialog" type="button" aria-label="Đóng">×</button></div>
+        <p id="exportDialogHint">Chọn xuất toàn bộ hoặc từng nhân viên.</p>
+        <div id="exportOptions" class="export-options"></div>
+      </div>
+    </div>
+    <div id="iosExportPreview" class="ios-export-preview" hidden role="dialog" aria-modal="true" aria-labelledby="iosExportTitle">
+      <div class="ios-export-card">
+        <div class="dialog-heading"><div><p class="eyebrow">ẢNH ĐÃ SẴN SÀNG</p><h2 id="iosExportTitle">Lưu thông tin nhân viên</h2></div><button class="icon-button" id="closeIosExport" type="button" aria-label="Đóng">×</button></div>
+        <div class="ios-export-image-wrap"><img id="iosExportImage" alt="Ảnh phiếu lương vừa tạo" /></div>
+        <p>Nhấn nút bên dưới để tải ảnh trên Safari hoặc mở bảng chia sẻ của thiết bị.</p>
+        <button class="button primary" id="shareIosExport" type="button">Tải / Chia sẻ ảnh</button>
+      </div>
+    </div>
+    <dialog id="iosDatePicker" class="ios-date-picker">
+      <div class="ios-picker-content">
+        <div class="ios-picker-header"><button id="iosPreviousMonth" type="button" aria-label="Tháng trước">‹</button><strong id="iosPickerTitle">Tháng</strong><button id="iosNextMonth" type="button" aria-label="Tháng sau">›</button></div>
+        <div class="ios-weekdays"><span>CN</span><span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span></div>
+        <div id="iosCalendarDays" class="ios-calendar-days"></div>
+        <div class="ios-picker-actions"><button class="button ghost" id="iosToday" type="button">Hôm nay</button><button class="button primary" id="iosCancel" type="button">Xong</button></div>
+      </div>
+    </dialog>
+    <dialog id="employmentDialog">
+      <div class="employment-dialog-content">
+        <div class="dialog-heading"><div><p class="eyebrow">THỜI GIAN LÀM VIỆC</p><h2 id="employmentName">Nhân viên</h2></div><button class="icon-button" id="closeEmploymentDialog" type="button" aria-label="Đóng">×</button></div>
+        <div id="employmentPeriod" class="employment-period"></div>
+        <button class="button primary" id="doneEmploymentDialog" type="button">Đóng</button>
+      </div>
+    </dialog>
+    <dialog id="entryDialog">
+      <form id="entryForm" method="dialog">
+        <div class="dialog-heading">
+          <div><p class="eyebrow">CẬP NHẬT KHOẢN MỤC</p><h2 id="entryDialogTitle">Thêm khoản mục</h2></div>
+          <button class="icon-button" id="closeEntryDialog" type="button" aria-label="Đóng">×</button>
+        </div>
+        <input id="entryEmployeeId" type="hidden" /><input id="entryEmployeeMonth" type="hidden" />
+        <input id="entryType" type="hidden" />
+        <input id="entryId" type="hidden" />
+        <div class="form-grid">
+          <label class="wide" id="entryReasonWrap"><span id="entryReasonLabel">Nội dung / lý do</span><input id="entryReason" maxlength="100" placeholder="Ví dụ: Thưởng tăng ca" /></label>
+          <label id="entryDateWrap">Ngày<input id="entryDate" type="date" required /></label>
+          <label id="entryAmountWrap">Số tiền<div class="money-input"><input id="entryAmount" class="currency-input" type="text" inputmode="numeric" required placeholder="Nhập số tiền" /><b>₫</b></div></label>
+          <label id="entryDaysWrap" hidden>Số ngày nghỉ<input id="entryDays" type="hidden" value="1" /><span class="ios-segment" role="group" aria-label="Số ngày nghỉ"><button type="button" data-leave-days="1" class="active">1 ngày</button><button type="button" data-leave-days="0.5">Nửa ngày</button></span></label>
+        </div>
+        <div class="dialog-actions"><span class="action-spacer"></span><button class="button ghost" id="cancelEntryDialog" type="button">Hủy</button><button class="button primary" type="submit">Lưu</button></div>
+      </form>
+    </dialog>
+    <div id="entryListDialog" class="information-modal entry-list-modal" hidden role="dialog" aria-modal="true" aria-labelledby="entryListTitle">
+      <section class="information-card entry-list-card">
+        <header class="entry-list-header"><div><p class="eyebrow">CHI TIẾT KHOẢN MỤC</p><h2 id="entryListTitle">Khoản mục</h2><small id="entryListHint"></small></div><button class="icon-button" id="closeEntryList" type="button" aria-label="Đóng">×</button></header>
+        <div id="entryList" class="entry-list" aria-live="polite"></div>
+        <footer class="entry-list-footer"><button class="button ghost" id="closeEntryListFooter" type="button">Đóng</button><button class="button primary" id="addEntryFromList" type="button">＋ Thêm khoản</button></footer>
+      </section>
+    </div>
+    <div id="payrollDialog" class="information-modal salary-information-modal" hidden role="dialog" aria-modal="true" aria-labelledby="payslipName">
+      <section class="information-card salary-card">
+        <header class="salary-card-header">
+          <div class="salary-card-brand"><img id="payslipOrganizationLogo" src="./icon.svg" alt="" /><div><p>PHIẾU LƯƠNG</p><small id="payslipMonth">Kỳ lương</small></div></div>
+          <button class="icon-button" id="closePayroll" type="button" aria-label="Đóng phiếu lương">×</button>
+        </header>
+        <div class="salary-card-scroll">
+          <section class="salary-person">
+            <span class="avatar large" id="payslipAvatar">N</span>
+            <div class="salary-person-copy"><h2 id="payslipName">Tên nhân viên</h2><p id="payslipPosition">Chức vụ</p><div class="salary-payment-row"><button class="payment-status pending" id="togglePayrollPayment" type="button"><span class="payment-dot" aria-hidden="true"></span><span id="payslipPaymentLabel">Chưa thanh toán</span></button><div class="salary-net-compact"><small>THỰC NHẬN</small><b id="payslipRemaining">0 ₫</b></div></div></div>
+          </section>
+          <section class="salary-profile-section">
+            <h3>Thông tin nhân viên</h3>
+            <div class="salary-profile-grid" id="payslipProfileInfo"></div>
+            <div class="salary-profile-images" id="payslipProfilePhotos" hidden></div>
+          </section>
+          <section class="salary-section" id="payslipIncomeSection"><h3>Chi tiết thu nhập</h3><div id="payslipIncome" class="salary-rows"></div></section>
+          <section class="salary-section" id="payslipDeductionSection"><h3>Các khoản khấu trừ</h3><div id="payslipDeductions" class="salary-rows"></div></section>
+          <section class="salary-note" id="payslipNoteWrap"><strong>Ghi chú</strong><p id="payslipNote"></p></section>
+        </div>
+        <footer class="salary-card-footer"><span>Dữ liệu được lưu trên thiết bị</span><div class="salary-card-actions"><button class="button ghost" id="exportInfoFromPayslip" type="button">Xuất Phiếu lương</button><button class="button primary" id="donePayroll" type="button">Đóng</button></div></footer>
+      </section>
+    </div>
+
+    <dialog id="confirmActionDialog" class="confirm-action-dialog">
+      <div class="confirm-action-content">
+        <div class="dialog-heading"><div><p class="eyebrow" id="confirmActionEyebrow">XÁC NHẬN</p><h2 id="confirmActionTitle">Xác nhận thao tác</h2></div><button class="icon-button" id="closeConfirmAction" type="button" aria-label="Đóng">×</button></div>
+        <p id="confirmActionMessage"></p>
+        <div class="dialog-actions"><span class="action-spacer"></span><button class="button ghost" id="cancelConfirmAction" type="button">Hủy</button><button class="button danger" id="confirmAction" type="button">Đồng ý</button></div>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./html2canvas.min.js"></script>
+    <script src="./app.js?v=191" defer></script>
+  </body>
+</html>
