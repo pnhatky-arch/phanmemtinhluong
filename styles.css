@@ -2837,3 +2837,15 @@ box-shadow:inset 0 1px rgba(200,229,255,.13),0 6px 16px rgba(0,8,25,.2)!importan
 overflow:hidden!important;backdrop-filter:blur(16px)!important;-webkit-backdrop-filter:blur(16px)!important}
 html[data-theme="dark"] .topbar-menu button:not(.active){background:transparent!important;background-image:none!important;border:0!important;box-shadow:none!important}
 @media(max-width:640px){html[data-theme="dark"] .topbar-menu{padding:8px 12px max(10px,env(safe-area-inset-bottom))!important}html[data-theme="dark"] .employee-month-picker input{font-size:16px!important}}
+
+/* Fix iOS native month input overflow inside employee payroll selector */
+.employee-row .employee-period-controls{display:grid!important;grid-template-columns:30px minmax(0,1fr) 30px!important;gap:8px!important;align-items:center!important;justify-content:center!important;width:100%!important;max-width:100%!important}
+.employee-row .employee-period-controls>span{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:4px!important;min-width:0!important;width:100%!important}
+.employee-row .employee-period-controls>span>b{font-size:12px!important;line-height:1.25!important;margin:0!important}
+.employee-row .employee-month-picker{display:block!important;width:min(100%,220px)!important;max-width:220px!important;min-width:0!important;margin:0 auto!important;padding:0!important}
+.employee-row .employee-month-picker input[type="month"]{display:block!important;box-sizing:border-box!important;width:100%!important;min-width:0!important;max-width:100%!important;height:42px!important;min-height:42px!important;padding:6px 10px!important;font-size:16px!important;line-height:22px!important;font-weight:700!important;text-align:center!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important;-webkit-appearance:none!important;appearance:none!important}
+.employee-row .employee-month-picker input[type="month"]::-webkit-date-and-time-value{min-width:0!important;width:100%!important;text-align:center!important;line-height:28px!important}
+.employee-row .employee-month-picker input[type="month"]::-webkit-datetime-edit{display:flex!important;align-items:center!important;justify-content:center!important;padding:0!important;white-space:nowrap!important}
+.employee-row .employee-month-picker input[type="month"]::-webkit-calendar-picker-indicator{margin:0 0 0 3px!important;flex:0 0 auto!important}
+.employee-row .employee-period-controls>.period-nav{width:30px!important;height:30px!important;min-width:30px!important;align-self:center!important}
+.employee-row .employee-period-controls small{font-size:11px!important;line-height:1.35!important;white-space:normal!important}
