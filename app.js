@@ -1528,7 +1528,9 @@ function confirmEmployeeAction() {
 }
 
 function goToToday() {
+  archiveCompletedPayrolls();
   currentMonth = monthKey(new Date());
+  employees().forEach((employee) => setManagementMonth(employee.id, currentMonth));
   $("#payrollMonth").value = currentMonth + "-01";
   selectionModeAll = false;
   selectedEmployeeIds.clear();
