@@ -2808,3 +2808,10 @@ html[data-theme="dark"] .employee-month-picker input{background:#142238!importan
 html[data-theme="dark"] .topbar-menu nav{background:rgba(19,32,50,.96)!important;background-image:none!important;border:1px solid rgba(141,174,207,.32)!important;box-shadow:none!important;border-radius:20px!important;overflow:hidden!important}
 html[data-theme="dark"] .topbar-menu button:not(.active){background:transparent!important;background-image:none!important;box-shadow:none!important;border:0!important}
 @media(max-width:640px){html[data-theme="dark"] .topbar-menu{background:#080c12!important;background-image:none!important;padding:8px 12px max(10px,env(safe-area-inset-bottom))!important}html[data-theme="dark"] .topbar-menu nav{border-radius:20px!important}html[data-theme="dark"] .employee-month-picker input{font-size:16px!important}}
+
+/* Minimal wallpaper: one fixed layer across all views, no color seams */
+html[data-theme="dark"],html[data-theme="dark"] body{background:#061327!important;background-image:none!important}
+html[data-theme="dark"] body::before{content:""!important;position:fixed!important;inset:0!important;z-index:0!important;pointer-events:none!important;background:#061327 url("./background-minimal.svg?v=1") center center/cover no-repeat!important}
+html[data-theme="dark"] .finance-app{position:relative!important;z-index:1!important;background:transparent!important;background-image:none!important}
+html[data-theme="dark"] .workspace,html[data-theme="dark"] .main-content{background:transparent!important;background-image:none!important}
+html[data-theme="dark"] .topbar-menu{background:rgba(4,14,31,.72)!important;backdrop-filter:blur(18px)!important;-webkit-backdrop-filter:blur(18px)!important}
