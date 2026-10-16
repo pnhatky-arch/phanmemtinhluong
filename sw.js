@@ -1,5 +1,5 @@
-const CACHE = "tinh-luong-v260";
-const ASSETS = ["/styles.css?v=188", "/app.js?v=194", "/manifest.webmanifest", "/icon.svg"];
+const CACHE = "tinh-luong-v261";
+const ASSETS = ["/styles.css?v=188", "/app.js?v=195", "/manifest.webmanifest", "/icon.svg"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(ASSETS)));
