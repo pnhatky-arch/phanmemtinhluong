@@ -2793,25 +2793,18 @@ html[data-theme="dark"] .payslip-note {
   }
 }
 
-/* Liquid Glass — payroll UI */
-:root[data-theme="dark"]{--bg:#061326;--surface:rgba(24,58,103,.40);--line:rgba(139,205,255,.36);--primary:#238dff}
-:root[data-theme="dark"] body{background:radial-gradient(ellipse at 76% 0%,#134b8c 0%,transparent 36%),radial-gradient(ellipse at 0% 76%,#103d75 0%,transparent 38%),#061326;background-attachment:fixed}
-:root[data-theme="dark"] .finance-app{background:transparent}
-:root[data-theme="dark"] .period-bar,:root[data-theme="dark"] .employee-row,:root[data-theme="dark"] .metric,:root[data-theme="dark"] .summary-main,:root[data-theme="dark"] .ios-setting-group,:root[data-theme="dark"] .topbar-menu nav,:root[data-theme="dark"] .employee-filter,:root[data-theme="dark"] .payslip-hub-hero{background:linear-gradient(135deg,rgba(80,153,238,.23),rgba(14,37,77,.53) 65%,rgba(86,154,239,.15));border:1px solid rgba(143,205,255,.42);box-shadow:inset 0 1px 1px rgba(238,249,255,.34),0 10px 32px rgba(0,12,39,.28);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);border-radius:24px}
-:root[data-theme="dark"] .button.primary,:root[data-theme="dark"] #goToday,:root[data-theme="dark"] .topbar-menu button.active{background:linear-gradient(125deg,#13b5ff,#2371fa 62%,#6558ff);color:#fff;border:1px solid rgba(190,234,255,.75);box-shadow:inset 0 1px 2px rgba(255,255,255,.5),0 5px 22px rgba(0,113,255,.36);border-radius:19px}
-:root[data-theme="dark"] .button.ghost,:root[data-theme="dark"] .period-nav,:root[data-theme="dark"] .employee-month-picker{background:rgba(24,65,113,.38);border:1px solid rgba(150,207,255,.4);box-shadow:inset 0 1px rgba(255,255,255,.15);border-radius:17px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
-:root[data-theme="dark"] .topbar-menu{background:transparent;backdrop-filter:none}
-@media(max-width:640px){:root[data-theme="dark"] .topbar-menu nav{border-radius:30px 30px 0 0}:root[data-theme="dark"] .period-bar,:root[data-theme="dark"] .employee-row{border-radius:26px}}
 
-/* Liquid Glass refinement: unified surface and iPhone navigation */
-:root[data-theme="dark"] body,:root[data-theme="dark"] html{background:#061326!important}
-:root[data-theme="dark"] .finance-app,:root[data-theme="dark"] .workspace,:root[data-theme="dark"] .main-content{background:transparent!important}
-:root[data-theme="dark"] .aurora{pointer-events:none;opacity:.23}
-:root[data-theme="dark"] .employee-month-picker{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important}
-:root[data-theme="dark"] .employee-month-picker input{background:rgba(13,33,67,.68)!important;border:1px solid rgba(151,209,255,.42)!important;border-radius:12px!important;box-shadow:none!important;max-width:100%;min-width:0}
-:root[data-theme="dark"] .employee-period-controls{min-width:0}
-:root[data-theme="dark"] .topbar-menu,:root[data-theme="dark"] .topbar-menu nav{border:0!important;box-shadow:none!important}
-:root[data-theme="dark"] .topbar-menu nav{background:linear-gradient(145deg,rgba(32,87,153,.72),rgba(6,29,65,.87))!important;border:1px solid rgba(135,198,255,.38)!important;border-radius:28px!important;overflow:hidden}
-:root[data-theme="dark"] .topbar-menu button:not(.active){background:transparent!important;border:0!important;box-shadow:none!important}
-:root[data-theme="dark"] .period-bar,:root[data-theme="dark"] .employee-row,:root[data-theme="dark"] .ios-setting-group{background:linear-gradient(145deg,rgba(32,78,137,.55),rgba(9,29,59,.73))!important}
-@media(max-width:640px){:root[data-theme="dark"] .topbar-menu{padding:8px 12px max(10px,env(safe-area-inset-bottom))!important;background:rgba(4,17,38,.84)!important}:root[data-theme="dark"] .topbar-menu nav{border-radius:28px!important}:root[data-theme="dark"] .employee-month-picker input{font-size:14px!important}}
+/* VNSD-inspired unified glass system: one fixed canvas, no sectional gradients */
+html[data-theme="dark"]{--bg:#080c12;--surface:#121c29;--line:rgba(156,181,207,.25);--primary:#4386e9;background:#080c12!important}
+html[data-theme="dark"] body{background:#080c12!important;color:#eaf2fb}
+html[data-theme="dark"] body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 100% 48% at 50% -18%,rgba(37,79,135,.22),transparent 80%),#080c12}
+html[data-theme="dark"] .finance-app,html[data-theme="dark"] .workspace,html[data-theme="dark"] .main-content,html[data-theme="dark"] .topbar,html[data-theme="dark"] .topbar-menu,html[data-theme="dark"] .page-title,html[data-theme="dark"] .app-credit{background:transparent!important;background-image:none!important}
+html[data-theme="dark"] .aurora{display:none!important}
+html[data-theme="dark"] .period-bar,html[data-theme="dark"] .employee-row,html[data-theme="dark"] .metric,html[data-theme="dark"] .summary-main,html[data-theme="dark"] .ios-setting-group,html[data-theme="dark"] .employee-filter,html[data-theme="dark"] .payslip-hub-hero,html[data-theme="dark"] .payslip-hub-item,html[data-theme="dark"] .overview-detail{background:rgba(23,34,49,.76)!important;background-image:none!important;border:1px solid rgba(144,177,210,.27)!important;box-shadow:inset 0 1px rgba(235,247,255,.09),0 8px 24px rgba(0,0,0,.13)!important;border-radius:20px!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+html[data-theme="dark"] .button.primary,html[data-theme="dark"] #goToday,html[data-theme="dark"] .topbar-menu button.active{background:#286fd1!important;background-image:none!important;border:1px solid rgba(141,198,255,.55)!important;box-shadow:inset 0 1px rgba(255,255,255,.18)!important;border-radius:14px!important;color:#fff!important}
+html[data-theme="dark"] .button.ghost,html[data-theme="dark"] .period-nav{background:rgba(38,58,83,.62)!important;background-image:none!important;border:1px solid rgba(141,174,207,.32)!important;box-shadow:none!important;border-radius:14px!important}
+html[data-theme="dark"] .employee-month-picker{background:transparent!important;background-image:none!important;border:0!important;box-shadow:none!important;min-width:0!important}
+html[data-theme="dark"] .employee-month-picker input{background:#142238!important;border:1px solid rgba(141,174,207,.38)!important;box-shadow:none!important;border-radius:12px!important;min-width:0!important;max-width:100%!important}
+html[data-theme="dark"] .topbar-menu nav{background:rgba(19,32,50,.96)!important;background-image:none!important;border:1px solid rgba(141,174,207,.32)!important;box-shadow:none!important;border-radius:20px!important;overflow:hidden!important}
+html[data-theme="dark"] .topbar-menu button:not(.active){background:transparent!important;background-image:none!important;box-shadow:none!important;border:0!important}
+@media(max-width:640px){html[data-theme="dark"] .topbar-menu{background:#080c12!important;background-image:none!important;padding:8px 12px max(10px,env(safe-area-inset-bottom))!important}html[data-theme="dark"] .topbar-menu nav{border-radius:20px!important}html[data-theme="dark"] .employee-month-picker input{font-size:16px!important}}
