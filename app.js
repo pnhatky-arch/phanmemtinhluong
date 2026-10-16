@@ -12,7 +12,7 @@ let selectedEmployeeIds = new Set();
 let pendingEmployeeAction = null;
 let pendingIosExport = null;
 let showPayrollPeriod = localStorage.getItem("tinh-luong-show-period") !== "0";
-let managementMonthByEmployee = JSON.parse(localStorage.getItem("tinh-luong-management-months") || "{}");
+let managementMonthByEmployee = {}; // On launch, use the payroll period containing today, not a stale saved selection.
 let editingEmployeeMonth = currentMonth;
 let entryEmployeeMonth = currentMonth;
 let payslipEmployeeId = "";
@@ -681,8 +681,19 @@ function ensurePeriodEmployeesFor(month) {
   saveState();
 }
 
+function currentPayrollMonthFor(employee, date = todayKey()) {
+  const calendarMonth = date.slice(0, 7);
+  // A period anchored late in the month (e.g. 29th) may still belong to the prior month.
+  // Evaluate the employee's actual configured period, not the calendar label.
+  for (const month of [calendarMonth, previousMonth(calendarMonth), shiftMonth(calendarMonth, 1)]) {
+    const period = getPayrollPeriod(employee, month);
+    if (periodContains(period, date)) return month;
+  }
+  return calendarMonth;
+}
+
 function managementMonth(employee) {
-  return managementMonthByEmployee[employee.id] || currentMonth;
+  return managementMonthByEmployee[employee.id] || currentPayrollMonthFor(employee);
 }
 
 function setManagementMonth(employeeId, month) {
@@ -1531,8 +1542,8 @@ function goToToday() {
   archiveCompletedPayrolls();
   const targetMonth = realCurrentMonth();
   currentMonth = targetMonth;
-  const ids = new Set(Object.values(state.periods || {}).flatMap((list) => (list || []).map((employee) => employee.id)));
-  ids.forEach((id) => setManagementMonth(id, targetMonth));
+  managementMonthByEmployee = {};
+  localStorage.removeItem("tinh-luong-management-months");
   editingEmployeeMonth = targetMonth;
   payslipMonth = targetMonth;
   $("#payrollMonth").value = todayKey();
