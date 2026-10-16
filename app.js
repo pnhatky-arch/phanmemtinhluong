@@ -1147,7 +1147,11 @@ function showEntryDialog(employee, type, entryId = "") {
   $("#entryEmployeeMonth").value = month;
   $("#entryType").value = type;
   $("#entryId").value = entry?.id || "";
-  $("#entryDate").value = entry?.date || todayKey();
+  const period = getPayrollPeriod(employee, month);
+  const suggestedDate = todayKey();
+  $("#entryDate").value = entry?.date || (periodContains(period, suggestedDate) ? suggestedDate : period.start);
+  $("#entryDate").min = period.start;
+  $("#entryDate").max = period.end;
   $("#entryReason").value = entry?.reason || "";
   $("#entryReasonLabel").textContent = entryConfig[type].reasonLabel;
   $("#entryReason").placeholder = entryConfig[type].placeholder;
@@ -1172,6 +1176,12 @@ function submitEntry(event) {
   const type = $("#entryType").value;
   if (!employee || !type) return;
   const date = $("#entryDate").value || todayKey();
+  const period = getPayrollPeriod(employee, targetMonth);
+  if (!periodContains(period, date)) {
+    showToast(`Ngày phát sinh phải thuộc kỳ ${formatPayrollDate(period.start)} – ${formatPayrollDate(period.end)}`);
+    $("#entryDate").focus();
+    return;
+  }
   const entryId = $("#entryId").value;
   const list = entryCollection(employee, type);
   const values = type === "leave"
