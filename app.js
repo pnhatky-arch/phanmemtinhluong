@@ -1529,10 +1529,14 @@ function confirmEmployeeAction() {
 
 function goToToday() {
   archiveCompletedPayrolls();
-  currentMonth = monthKey(new Date());
-  employees().forEach((employee) => setManagementMonth(employee.id, currentMonth));
-  $("#payrollMonth").value = currentMonth + "-01";
-  selectionModeAll = false;
+  const targetMonth = realCurrentMonth();
+  currentMonth = targetMonth;
+  const ids = new Set(Object.values(state.periods || {}).flatMap((list) => (list || []).map((employee) => employee.id)));
+  ids.forEach((id) => setManagementMonth(id, targetMonth));
+  editingEmployeeMonth = targetMonth;
+  payslipMonth = targetMonth;
+  $("#payrollMonth").value = todayKey();
+  selectionModeAll = true;
   selectedEmployeeIds.clear();
   render();
   showToast("Đã trở về kỳ lương hiện tại");
