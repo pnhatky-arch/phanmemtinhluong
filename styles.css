@@ -2810,27 +2810,30 @@ html[data-theme="dark"] .topbar-menu button:not(.active){background:transparent!
 @media(max-width:640px){html[data-theme="dark"] .topbar-menu{background:#080c12!important;background-image:none!important;padding:8px 12px max(10px,env(safe-area-inset-bottom))!important}html[data-theme="dark"] .topbar-menu nav{border-radius:20px!important}html[data-theme="dark"] .employee-month-picker input{font-size:16px!important}}
 
 
-/* Liquid Glass v2 — polished controls, original plain navy canvas */
-html[data-theme="dark"],html[data-theme="dark"] body{background:#061326!important;background-image:none!important}
+
+/* Liquid Glass soft — approved low-gloss design */
+html[data-theme="dark"],html[data-theme="dark"] body{background:#071628!important;background-image:none!important}
 html[data-theme="dark"] body::before{display:none!important;content:none!important}
-html[data-theme="dark"] .finance-app,html[data-theme="dark"] .workspace,html[data-theme="dark"] .main-content{background:transparent!important;background-image:none!important}
 html[data-theme="dark"] .aurora{display:none!important}
+html[data-theme="dark"] .finance-app,html[data-theme="dark"] .workspace,html[data-theme="dark"] .main-content{background:transparent!important;background-image:none!important}
 html[data-theme="dark"] .period-bar,html[data-theme="dark"] .employee-row,html[data-theme="dark"] .metric,html[data-theme="dark"] .summary-main,html[data-theme="dark"] .ios-setting-group,html[data-theme="dark"] .employee-filter,html[data-theme="dark"] .payslip-hub-hero,html[data-theme="dark"] .payslip-hub-item,html[data-theme="dark"] .overview-detail{
-background:linear-gradient(140deg,rgba(37,89,159,.45) 0%,rgba(12,39,82,.72) 30%,rgba(7,27,60,.8) 78%,rgba(35,84,150,.37) 100%)!important;
-border:1px solid rgba(133,198,255,.67)!important;border-radius:27px!important;
-box-shadow:inset 0 2px 2px rgba(238,250,255,.35),inset 2px 0 7px rgba(103,190,255,.16),inset -2px -3px 6px rgba(82,154,255,.19),0 10px 28px rgba(0,9,31,.25)!important;
-backdrop-filter:blur(22px) saturate(145%)!important;-webkit-backdrop-filter:blur(22px) saturate(145%)!important}
+background:linear-gradient(145deg,rgba(24,60,102,.78),rgba(13,39,73,.78))!important;
+border:1px solid rgba(96,154,213,.43)!important;border-radius:24px!important;
+box-shadow:inset 0 1px rgba(198,225,255,.12),0 7px 20px rgba(0,8,25,.15)!important;
+backdrop-filter:blur(15px) saturate(115%)!important;-webkit-backdrop-filter:blur(15px) saturate(115%)!important}
 html[data-theme="dark"] .button.primary,html[data-theme="dark"] #goToday,html[data-theme="dark"] .topbar-menu button.active{
-background:linear-gradient(125deg,#08baff 0%,#147dfb 52%,#6552f7 100%)!important;
-border:1px solid rgba(194,239,255,.82)!important;border-radius:23px!important;color:#fff!important;
-box-shadow:inset 0 2px 2px rgba(255,255,255,.48),inset 0 -2px 4px rgba(23,47,169,.2),0 5px 17px rgba(20,111,245,.28)!important}
+background:linear-gradient(120deg,#2b9df5,#1764f5 70%,#4b53e8)!important;color:#fff!important;
+border:1px solid rgba(127,194,255,.58)!important;border-radius:20px!important;
+box-shadow:inset 0 1px rgba(255,255,255,.17),0 3px 10px rgba(9,72,173,.2)!important}
 html[data-theme="dark"] .button.ghost,html[data-theme="dark"] .period-nav{
-background:linear-gradient(145deg,rgba(47,101,168,.4),rgba(10,40,86,.54))!important;
-border:1px solid rgba(132,193,248,.47)!important;border-radius:21px!important;
-box-shadow:inset 0 2px 1px rgba(209,240,255,.19)!important}
-html[data-theme="dark"] .employee-month-picker{background:transparent!important;border:0!important;box-shadow:none!important}
-html[data-theme="dark"] .employee-month-picker input{background:rgba(10,32,67,.7)!important;border:1px solid rgba(132,193,248,.43)!important;border-radius:13px!important;min-width:0!important;max-width:100%!important;box-shadow:inset 0 1px 2px rgba(255,255,255,.12)!important}
-html[data-theme="dark"] .topbar-menu{background:transparent!important;background-image:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border:0!important}
-html[data-theme="dark"] .topbar-menu nav{background:linear-gradient(155deg,rgba(25,77,142,.83),rgba(6,29,66,.94))!important;border:1px solid rgba(144,205,255,.62)!important;border-radius:29px!important;overflow:hidden!important;box-shadow:inset 0 2px 2px rgba(228,246,255,.25),0 7px 22px rgba(0,9,31,.3)!important;backdrop-filter:blur(22px)!important;-webkit-backdrop-filter:blur(22px)!important}
+background:rgba(16,45,81,.65)!important;border:1px solid rgba(92,148,206,.43)!important;
+border-radius:20px!important;box-shadow:none!important}
+html[data-theme="dark"] .employee-month-picker{background:transparent!important;border:0!important;box-shadow:none!important;min-width:0!important}
+html[data-theme="dark"] .employee-month-picker input{background:rgba(13,34,63,.82)!important;border:1px solid rgba(96,154,213,.4)!important;border-radius:12px!important;box-shadow:none!important;min-width:0!important;max-width:100%!important}
+html[data-theme="dark"] .topbar-menu{background:transparent!important;background-image:none!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+html[data-theme="dark"] .topbar-menu nav{background:rgba(17,44,78,.94)!important;background-image:none!important;
+border:1px solid rgba(96,154,213,.44)!important;border-radius:25px!important;
+box-shadow:inset 0 1px rgba(200,229,255,.13),0 6px 16px rgba(0,8,25,.2)!important;
+overflow:hidden!important;backdrop-filter:blur(16px)!important;-webkit-backdrop-filter:blur(16px)!important}
 html[data-theme="dark"] .topbar-menu button:not(.active){background:transparent!important;background-image:none!important;border:0!important;box-shadow:none!important}
-@media(max-width:640px){html[data-theme="dark"] .topbar-menu{padding:8px 12px max(10px,env(safe-area-inset-bottom))!important}html[data-theme="dark"] .topbar-menu nav{border-radius:27px!important}html[data-theme="dark"] .employee-month-picker input{font-size:16px!important}}
+@media(max-width:640px){html[data-theme="dark"] .topbar-menu{padding:8px 12px max(10px,env(safe-area-inset-bottom))!important}html[data-theme="dark"] .employee-month-picker input{font-size:16px!important}}
